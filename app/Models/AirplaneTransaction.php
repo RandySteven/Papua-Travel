@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class AirplaneTransaction extends Model
 {
@@ -30,5 +31,9 @@ class AirplaneTransaction extends Model
     public function airplane(): BelongsTo
     {
         return $this->belongsTo(Airplane::class, 'airplane_id');
+    }
+
+    public function airplane_transaction_details() : HasMany {
+        return $this->hasMany(AirplaneTransactionDetail::class);
     }
 }

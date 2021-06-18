@@ -21,4 +21,14 @@ class AirplaneTransactionDetail extends Model
     {
         return $this->belongsTo(Seat::class, 'seat_id');
     }
+
+    /**
+     * Get the airplane_transaction that owns the AirplaneTransactionDetail
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function airplane_transaction(): BelongsTo
+    {
+        return $this->belongsTo(AirplaneTransaction::class, 'airplane_transaction_id');
+    }
 }

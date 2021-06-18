@@ -52,7 +52,7 @@ $provinces = array(
     </div>
     <div class="form-group my-2">
         <label for="schedule_time">Schedule Time</label>
-        <input type="time" name="schedule_time" id="schedule_time" class="schedule_time">
+        <input type="time" name="schedule_time" id="schedule_time" class="w-full">
     </div>
     <div class="form-group my-2">
         <label for="arival_time">Arival Time</label>

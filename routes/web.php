@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AirplaneController;
+use App\Http\Controllers\AirplaneTransactionController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
@@ -134,9 +135,14 @@ Route::middleware('auth')->group(function(){
     Route::post('/add-to-cart', [CartController::class, 'store'])->name('add.to.cart');
     Route::get('/cart', [CartController::class, 'index'])->name('carts');
     Route::post('/hotel-transaction', [HotelTransactionController::class, 'store'])->name('hotel.transaction.store');
+
+    Route::get('booking/{schedule:id}', [BookingController::class, 'create'])->name('booking.create');
+    Route::post('add-to-booking', [BookingController::class, 'store'])->name('booking.store');
+    Route::get('booking', [BookingController::class, 'index'])->name('booking.index');
+    Route::post('airplane-transaction', [AirplaneTransactionController::class, 'store'])->name('airplane.transaction.store');
+
 });
 
-Route::get('booking', [BookingController::class, 'create'])->name('booking.create');
 
 //Airplane
 Route::prefix('airplane')->group(function(){
