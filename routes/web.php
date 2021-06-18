@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AirplaneController;
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FoodController;
@@ -134,6 +135,8 @@ Route::middleware('auth')->group(function(){
     Route::get('/cart', [CartController::class, 'index'])->name('carts');
     Route::post('/hotel-transaction', [HotelTransactionController::class, 'store'])->name('hotel.transaction.store');
 });
+
+Route::get('booking', [BookingController::class, 'create'])->name('booking.create');
 
 //Airplane
 Route::prefix('airplane')->group(function(){

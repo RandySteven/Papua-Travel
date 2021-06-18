@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Airplane;
 use App\Models\Schedule;
 use Illuminate\Http\Request;
 
@@ -20,5 +21,17 @@ class ScheduleController extends Controller
             'airplane_id' => $request->get('airplane_id')
         ]);
         return back();
+    }
+
+    public static function autodelete(Schedule $schedule){
+        $getDate = getdate(date("U"));
+        if("$getDate[mon]"<10){
+            $today_date = "$getDate[year]-0$getDate[mon]-$getDate[mday]";
+        }else{
+            $today_date = "$getDate[year]-$getDate[mon]-$getDate[mday]";
+        }
+        if($schedule->schedule_date == $today_date){
+            $schedule->delete();
+        }
     }
 }

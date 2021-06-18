@@ -20,7 +20,6 @@ class CreateAirplaneTransactionsTable extends Migration
             $table->date('departure_date');
             $table->string('to');
             $table->string('from');
-            $table->date('return_date')->nullable();
             $table->integer('total');
             $table->timestamps();
         });

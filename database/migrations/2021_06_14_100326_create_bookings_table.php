@@ -18,7 +18,8 @@ class CreateBookingsTable extends Migration
             $table->foreignId('seat_id')->constrained('seats')->onDelete('cascade');
             $table->primary(['user_id', 'seat_id']);
             $table->date('departure_date');
-            $table->date('return_date')->nullable();
+            $table->string('to');
+            $table->string('from');
             $table->timestamps();
         });
     }

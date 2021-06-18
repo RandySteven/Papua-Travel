@@ -27,7 +27,7 @@
                         <div class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 px-4"> --}}
                         @forelse ($airplanes as $airplane)
                         <a href="{{ route('airplane.show', $airplane) }}">
-                            <div class="bg-gray-100 border-indigo-600 dark:bg-gray-800 bg-opacity-95 border-opacity-60 | p-4 border-solid rounded-3xl border-2 | flex justify-around cursor-pointer | hover:bg-indigo-400 dark:hover:bg-indigo-600 hover:border-transparent | transition-colors duration-500">
+                            <div class="bg-gray-100 my-2 border-indigo-600 dark:bg-gray-800 bg-opacity-95 border-opacity-60 | p-4 border-solid rounded-3xl border-2 | flex justify-around cursor-pointer | hover:bg-indigo-400 dark:hover:bg-indigo-600 hover:border-transparent | transition-colors duration-500">
                                 <img class="w-16 h-16 object-cover" src="{{ asset('storage/'.$airplane->airplane_image) }}" alt="" />
                                 <div class="flex flex-col justify-center">
                                   <p class="text-gray-900 dark:text-gray-300 font-semibold">{{ $airplane->airplane_name }}</p>

@@ -31,8 +31,20 @@
 
                     <div class="grid grid-cols-1 my-2">
                         @foreach ($airplane->schedules as $schedule)
+                        @php
+                            App\Http\Controllers\ScheduleController::autodelete($schedule);
+                        @endphp
                             <div class="w-full border-2 border-black py-2 text-center">
-                                {{ $schedule }}
+                                <div class="form-group my-4">
+                                    from : {{ $schedule->departure_location }}
+                                    <br>
+                                    Schedule time : {{ $schedule->schedule_time }} <br>
+                                    Arival time : {{ $schedule->arival_time }} <br>
+                                    Date : {{ $schedule->schedule_date }}
+                                </div>
+                                <div class="form-group my-2">
+                                    <a href="{{ route('booking.create', $schedule) }}" class="w-full py-3 bg-red-600 hover:bg-red-500 text-white">Book Now</a>
+                                </div>
                             </div>
                         @endforeach
                     </div>
