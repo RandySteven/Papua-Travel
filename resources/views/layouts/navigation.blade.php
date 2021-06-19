@@ -12,8 +12,8 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                    <x-nav-link :href="route('airplane.index')" :active="request()->routeIs('airplane.index')">
+                        {{ __('Airplane') }}
                     </x-nav-link>
                     <x-nav-link :href="route('hotel.index')" :active="request()->routeIs('hotel.index')">Hotel</x-nav-link>
                     <x-dropdown>

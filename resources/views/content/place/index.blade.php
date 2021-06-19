@@ -2,6 +2,15 @@
     <x-slot name="title">
         Travel Places
     </x-slot>
+    <x-slot name="style">
+        <style>
+            body{
+                background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("/images/Raja-Ampat-salah-satu-destinasi-wisata-Papua.jpg");
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+        </style>
+    </x-slot>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">

@@ -32,4 +32,9 @@ class CartController extends Controller
         $carts = Cart::where('user_id', $user_id)->get();
         return view('content.hotel.cart.cart', compact('carts'));
     }
+
+    public function delete(Cart $cart){
+        $cart->where('room_id', $cart->room_id)->delete();
+        return back();
+    }
 }

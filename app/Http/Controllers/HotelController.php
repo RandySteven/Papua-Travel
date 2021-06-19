@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Storage;
 class HotelController extends Controller
 {
     public function index(){
-        $hotels = Hotel::get();
+        $hotels = Hotel::latest()->get();
         return view('content.hotel.index', compact('hotels'));
     }
 

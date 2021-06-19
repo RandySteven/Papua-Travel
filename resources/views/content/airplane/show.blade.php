@@ -2,7 +2,15 @@
     <x-slot name="title">
         {{ $airplane->airplane_name }}
     </x-slot>
-
+    <x-slot name="style">
+        <style>
+            body{
+                background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url("/images/300px-ANA_777-300_Taking_off_from_JFK.jpg");
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+        </style>
+    </x-slot>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -43,7 +51,7 @@
                                     Date : {{ $schedule->schedule_date }}
                                 </div>
                                 <div class="form-group my-2">
-                                    <a href="{{ route('booking.create', $schedule) }}" class="w-full py-3 bg-red-600 hover:bg-red-500 text-white">Book Now</a>
+                                    <a href="{{ route('booking.create', $schedule) }}" class="w-full px-5 rounded py-3 bg-red-600 hover:bg-red-500 text-white">Book Now</a>
                                 </div>
                             </div>
                         @endforeach

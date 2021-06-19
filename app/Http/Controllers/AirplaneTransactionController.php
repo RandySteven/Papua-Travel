@@ -21,7 +21,7 @@ class AirplaneTransactionController extends Controller
             ]);
         }
         $bookings->delete();
-        return back();
+        return redirect('airplane');
     }
 
     public function show(AirplaneTransaction $airplaneTransaction){

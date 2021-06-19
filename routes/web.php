@@ -135,12 +135,13 @@ Route::middleware('auth')->group(function(){
     Route::post('/add-to-cart', [CartController::class, 'store'])->name('add.to.cart');
     Route::get('/cart', [CartController::class, 'index'])->name('carts');
     Route::post('/hotel-transaction', [HotelTransactionController::class, 'store'])->name('hotel.transaction.store');
+    Route::delete('/cart/{cart:room_id}', [CartController::class, 'delete'])->name('cart.delete');
 
     Route::get('booking/{schedule:id}', [BookingController::class, 'create'])->name('booking.create');
     Route::post('add-to-booking', [BookingController::class, 'store'])->name('booking.store');
     Route::get('booking', [BookingController::class, 'index'])->name('booking.index');
     Route::post('airplane-transaction', [AirplaneTransactionController::class, 'store'])->name('airplane.transaction.store');
-
+    Route::delete('booking/{booking:seat_id}', [BookingController::class, 'delete'])->name('booking.delete');
 });
 
 

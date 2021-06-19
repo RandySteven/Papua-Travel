@@ -45,6 +45,17 @@
                     <div class="text-center">
                         <p class="text-8xl text-white font-bold font-mono">Papua Travel</p>
                     </div>
+                    <div class="text-center">
+                        <div class="grid grid-cols-2">
+                            <div class="py-12">
+                                <a href="{{ route('hotel.index') }}" class="py-5 w-full rounded px-12 bg-blue-500 text-white hover:bg-white hover:text-blue-500">Hotel</a>
+                            </div>
+                            <div class="py-12">
+                                <a href="{{ route('airplane.index') }}" class="py-5 w-full rounded px-12 bg-red-500 text-white hover:bg-white hover:text-red-500">Airplane</a>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
             </div>
 

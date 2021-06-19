@@ -27,11 +27,16 @@ class BookingController extends Controller
             ]);
             Seat::where('id', $seat)->update(['status' => 'Booked']);
         }
-        return back();
+        return redirect('booking');
     }
 
     public function index(){
         $bookings = Booking::where('user_id', auth()->user()->id)->get();
         return view('content.airplane.book.index', compact('bookings'));
+    }
+
+    public function delete(Booking $booking){
+        $booking->where('seat_id', $booking->seat_id)->delete();
+        return back();
     }
 }
