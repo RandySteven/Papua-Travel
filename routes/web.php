@@ -130,13 +130,14 @@ Route::prefix('diary')->group(function(){
     Route::get('{post:slug}', [PostController::class, 'show'])->name('post.show');
 });
 
-//Cart
 Route::middleware('auth')->group(function(){
+    //Cart
     Route::post('/add-to-cart', [CartController::class, 'store'])->name('add.to.cart');
     Route::get('/cart', [CartController::class, 'index'])->name('carts');
     Route::post('/hotel-transaction', [HotelTransactionController::class, 'store'])->name('hotel.transaction.store');
     Route::delete('/cart/{cart:room_id}', [CartController::class, 'delete'])->name('cart.delete');
 
+    //Booking
     Route::get('booking/{schedule:id}', [BookingController::class, 'create'])->name('booking.create');
     Route::post('add-to-booking', [BookingController::class, 'store'])->name('booking.store');
     Route::get('booking', [BookingController::class, 'index'])->name('booking.index');

@@ -10,6 +10,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="p-6 bg-white border-b border-gray-200">
+                        Mr. {{ strtoupper($cart->user->name) }}
                         <table class="w-full border-2 border-black">
                             <thead class="border-2 border-black ">
                                 <th class="border-2 border-black">Hotel</th>
@@ -35,7 +36,7 @@
                                     <td class="border-2 border-black">{{ $cart->room->room_price_pernight }}</td>
                                     <td class="border-2 border-black">{{ $cart->room->room_price_pernight * $cart->nights }}</td>
                                     <td class="border-2 border-black">
-                                        <form action="" method="POST">
+                                        <form action="{{ route('cart.delete', $cart) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="bg-red-600 hover:bg-red-500 text-white py-2">DELETE</button>
@@ -53,13 +54,17 @@
                                 {{ $total }}
                             </b>
                         </p>
-                        <form action="{{ route('hotel.transaction.store') }}" method="POST">
-                            @csrf
-                            <input type="hidden" name="hotel_id" value="{{ $cart->room->hotel->id }}">
-                            <button type="submit" class="w-full bg-red-600 hover:bg-red-500 text-white py-2 rounded">
-                                Check Out
-                            </button>
-                        </form>
+                        @empty($cart)
+                            <x-session></x-session>
+                        @else
+                            <form action="{{ route('hotel.transaction.store') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="hotel_id" value="{{ $cart->room->hotel->id }}">
+                                <button type="submit" class="w-full bg-red-600 hover:bg-red-500 text-white py-2 rounded">
+                                    Check Out
+                                </button>
+                            </form>
+                        @endempty
                     </div>
                 </div>
             </div>

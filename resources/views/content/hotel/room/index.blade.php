@@ -1,6 +1,7 @@
+
 @forelse ($rooms as $room)
     {{ App\Http\Controllers\RoomController::autoupdate($room) }}
-    <div class="bg-white shadow-md  rounded-3xl p-4">
+    <div class="bg-white shadow-md  rounded-3xl p-4 border-black border-2">
         <div class="flex-none lg:flex">
             <div class=" h-full w-full lg:h-48 lg:w-48   lg:mb-0 mb-3">
                 <img src="{{ asset('storage/'.$room->room_image) }}"
@@ -32,7 +33,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                     </svg>
-                    <p class="">{{ $room->status }}</p>
+                    <b class="{{ $room->status == 'Aviable' ? 'text-green-500' : 'text-red-500' }}">{{ $room->status }}</b>
                 </div>
             </div>
             <div class="flex p-4 pb-2 border-t border-gray-200 "></div>
@@ -49,7 +50,7 @@
                                 </path>
                             </svg>
                         </span>
-                        <span>{{ $room->room_price_pernight }}</span>
+                        <span>Rp. {{ number_format($room->room_price_pernight, 2) }}</span>
                     </button>
                 </div>
                 @if ($room->status == 'Aviable')
