@@ -36,15 +36,15 @@ class RoomController extends Controller
     }
 
     public static function autoupdate(Room $room){
-        // $transaction = HotelTransactionDetail::where('room_id', $room->id)->first();
-        $transaction = $room->hotel_transaction_details()->first();
+        // $transaction = HotelTransactionDetail::where()->get();
+        $transaction = $room->hotel_transaction_details()->latest()->first();
         $getDate = getdate(date("U"));
         if("$getDate[mon]"<10){
             $today_date = "$getDate[year]-0$getDate[mon]-$getDate[mday]";
         }else{
             $today_date = "$getDate[year]-$getDate[mon]-$getDate[mday]";
         }
-        if($transaction != null){
+        if($transaction!=null){
             if($transaction->to_date == $today_date){
                 $room->update(['status' => 'Aviable']);
             }

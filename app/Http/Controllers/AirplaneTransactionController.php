@@ -27,4 +27,9 @@ class AirplaneTransactionController extends Controller
     public function show(AirplaneTransaction $airplaneTransaction){
         return view('content.airplane.book.showtransaction', compact('airplaneTransaction'));
     }
+
+    public function index(){
+        $transactions = AirplaneTransaction::where('user_id', auth()->user()->id)->get();
+        return view('content.airplane.book.transaction', compact('transactions'));
+    }
 }

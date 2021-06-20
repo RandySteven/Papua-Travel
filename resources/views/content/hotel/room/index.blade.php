@@ -1,7 +1,7 @@
 
 @forelse ($rooms as $room)
     {{ App\Http\Controllers\RoomController::autoupdate($room) }}
-    <div class="bg-white shadow-md  rounded-3xl p-4 border-black border-2">
+    <div class="bg-white shadow-md  rounded-3xl p-4 border-black border-2 my-5">
         <div class="flex-none lg:flex">
             <div class=" h-full w-full lg:h-48 lg:w-48   lg:mb-0 mb-3">
                 <img src="{{ asset('storage/'.$room->room_image) }}"

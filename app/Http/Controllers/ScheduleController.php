@@ -30,8 +30,10 @@ class ScheduleController extends Controller
         }else{
             $today_date = "$getDate[year]-$getDate[mon]-$getDate[mday]";
         }
-        if($schedule->schedule_date == $today_date){
-            $schedule->delete();
+        if($schedule != null){
+            if($schedule->schedule_date == $today_date){
+                $schedule->delete();
+            }
         }
     }
 }

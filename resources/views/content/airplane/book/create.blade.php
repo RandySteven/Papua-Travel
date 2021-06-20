@@ -80,7 +80,7 @@
                                 @foreach ($schedule->airplane->seats as $seat)
                                     <option class="px-1 py-3 mx-2 my-2
                                        {{ $seat->status == 'Aviable' ? 'bg-green-500' : 'bg-red-500' }}
-                                    text-center" value="{{ $seat->id }}">{{ $seat->seat }}</option>
+                                    text-center" value="{{ $seat->id }}" {{ $seat->status == 'Booked' ? 'disabled' : '' }}>{{ $seat->seat }}</option>
                                 @endforeach
                                 </div>
                             </select>

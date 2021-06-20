@@ -141,8 +141,12 @@ Route::middleware('auth')->group(function(){
     Route::get('booking/{schedule:id}', [BookingController::class, 'create'])->name('booking.create');
     Route::post('add-to-booking', [BookingController::class, 'store'])->name('booking.store');
     Route::get('booking', [BookingController::class, 'index'])->name('booking.index');
-    Route::post('airplane-transaction', [AirplaneTransactionController::class, 'store'])->name('airplane.transaction.store');
+    Route::post('store-airplane-transaction', [AirplaneTransactionController::class, 'store'])->name('airplane.transaction.store');
     Route::delete('booking/{booking:seat_id}', [BookingController::class, 'delete'])->name('booking.delete');
+
+    //Airplane Transaction
+    Route::get('airplane-transaction', [AirplaneTransactionController::class, 'index'])->name('airplane.transaction.index');
+    Route::get('airpalane-transaction/{airplane_transaction:id}', [AirplaneTransactionController::class, 'show'])->name('airplane.transaction.show');
 });
 
 

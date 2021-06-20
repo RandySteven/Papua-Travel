@@ -32,7 +32,7 @@
                     <div class="grid grid-cols-6 mx-4">
                         @foreach ($airplane->seats as $seat)
                             <a href="" class="px-1 py-3 mx-2 my-2
-                               {{ $seat->status == 'Aviable' ? 'bg-green-500' : 'bg-red-500' }}
+                               {{ $seat->status == 'Aviable' ? 'bg-green-500 hover:bg-green-600' : 'bg-red-500' }}
                             text-center">{{ $seat->seat }}</a>
                         @endforeach
                     </div>

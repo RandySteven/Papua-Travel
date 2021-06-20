@@ -25,7 +25,8 @@ class HotelTransactionController extends Controller
                     'nights' => $cart->nights
                 ]
             );
-            $room = Room::where('id', $cart->room->id)->update(['status'=>'Booked']);
+            $room = Room::where('id', $cart->room->id);
+            $room->update(['status'=>'Booked']);
         }
         $carts->delete();
         return redirect('hotel');

@@ -10,7 +10,6 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="p-6 bg-white border-b border-gray-200">
-                        Mr. {{ strtoupper($cart->user->name) }}
                         <table class="w-full border-2 border-black">
                             <thead class="border-2 border-black ">
                                 <th class="border-2 border-black">Hotel</th>
@@ -57,6 +56,8 @@
                         @empty($cart)
                             <x-session></x-session>
                         @else
+
+                        MR. <b> {{ strtoupper($cart->user->name) }} </b>
                             <form action="{{ route('hotel.transaction.store') }}" method="POST">
                                 @csrf
                                 <input type="hidden" name="hotel_id" value="{{ $cart->room->hotel->id }}">
