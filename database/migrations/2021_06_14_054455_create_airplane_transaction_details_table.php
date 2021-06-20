@@ -15,8 +15,8 @@ class CreateAirplaneTransactionDetailsTable extends Migration
     {
         Schema::create('airplane_transaction_details', function (Blueprint $table) {
             $table->foreignId('seat_id')->constrained('seats')->onDelete('cascade');
-            $table->foreignId('airplane_transaction_id')->constrained('airplane_transactions')->onDelete('cascade');
-            $table->primary(['seat_id', 'airplane_transaction_id']);
+            $table->foreignId('airplane_t_id')->constrained('airplane_transactions')->onDelete('cascade');
+            $table->primary(['seat_id', 'airplane_t_id']);
             $table->timestamps();
         });
     }

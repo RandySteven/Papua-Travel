@@ -10,6 +10,7 @@
                     <div class="grid grid-cols-1">
                         @foreach ($transactions as $transaction)
                             <div class="border-2 border-black my-2 px-2">
+                                <h1 class="text-2xl">{{ $transaction->invoice }}</h1>
                                 <table class="border-2 border-black my-2 w-full">
                                     <tbody class="border-2 border-black my-2">
                                         <tr class="border-2 border-black my-2">

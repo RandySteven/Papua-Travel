@@ -62,7 +62,7 @@
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                         </svg>
-                                        <p class="">{{ $restaurant->time_open }} - {{ $restaurant->time_close }}</p>
+                                        <p class="">{{ $restaurant->time_open }} - {{ $restaurant->time_close }}</p> <br>
                                     </div>
                                 </div>
                                 <div class="flex p-4 pb-2 border-t border-gray-200 "></div>
@@ -85,7 +85,9 @@
                                     <a
                                         class="mb-2 md:mb-0 bg-gray-900 px-5 py-2 shadow-sm tracking-wider text-white rounded-full hover:bg-gray-800"
                                         href="{{ route('restaurant.show',$restaurant) }}" aria-label="like">Restaurant</a>
-                                    <a
+                                    @auth
+                                        @if (Auth::user()->hasRole('admin'))
+                                        <a
                                         class="mb-2 md:mb-0 bg-green-900 px-5 py-2 shadow-sm tracking-wider text-white rounded-full hover:bg-gray-800"
                                         href="{{ route('restaurant.edit',$restaurant) }}" aria-label="like">Edit Restaurant</a>
                                     <form action="{{ route('restaurant.delete', $restaurant) }}" method="POST">
@@ -95,6 +97,9 @@
                                         mb-2 md:mb-0 bg-red-900 px-5 py-2 shadow-sm tracking-wider text-white rounded-full hover:bg-red-800
                                         ">Delete</button>
                                     </form>
+
+                                        @endif
+                                    @endauth
                                 </div>
                             </div>
                         </div>

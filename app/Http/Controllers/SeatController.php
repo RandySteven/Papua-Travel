@@ -10,6 +10,9 @@ use Illuminate\Http\Request;
 class SeatController extends Controller
 {
     public function store(Request $request){
+        $request->validate([
+            'seat' => 'required'
+        ]);
         $attr = $request->all();
         $attr['airplane_id'] = $request->get('airplane_id');
         $attr['status'] = 'Aviable';

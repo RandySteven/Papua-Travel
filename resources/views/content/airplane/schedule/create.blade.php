@@ -48,15 +48,24 @@ $provinces = array(
     </div>
     <div class="form-group my-2">
         <label for="schedule_date">Schedule Date</label>
-        <input type="date" name="schedule_date" id="schedule_date" class="w-full">
+        <input type="date" name="schedule_date" id="schedule_date" class="w-full @error('schedule_date') border-red-500 @enderror">
+        @error('schedule_date')
+            <span class="text-red-500">{{ $message }}</span>
+        @enderror
     </div>
     <div class="form-group my-2">
         <label for="schedule_time">Schedule Time</label>
-        <input type="time" name="schedule_time" id="schedule_time" class="w-full">
+        <input type="time" name="schedule_time" id="schedule_time" class="w-full @error('schedule_time') border-red-500 @enderror">
+        @error('schedule_time')
+            <span class="text-red-500">{{ $message }}</span>
+        @enderror
     </div>
     <div class="form-group my-2">
         <label for="arival_time">Arival Time</label>
-        <input type="time" name="arival_time" id="arival_time" class="w-full">
+        <input type="time" name="arival_time" id="arival_time" class="w-full @error('arival_time') border-red-500 @enderror">
+        @error('arival_time')
+            <span class="text-red-500">{{ $message }}</span>
+        @enderror
     </div>
     <input type="hidden" name="airplane_id" value="{{ $airplane_id }}">
     <div class="form-group my-2">

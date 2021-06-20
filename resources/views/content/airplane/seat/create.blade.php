@@ -2,7 +2,10 @@
     @csrf
     <div class="form-group my-2">
         <label for="seat" class="w-full">Seat</label>
-        <input type="text" name="seat" id="seat" class="w-full rounded">
+        <input type="text" name="seat" id="seat" class="w-full rounded @error('seat') border-red-500 @enderror">
+        @error('seat')
+            <span class="text-red-500">{{ $message }}</span>
+        @enderror
     </div>
     <input type="hidden" name="airplane_id" value="{{ $airplane_id }}">
     <div class="form-group my-2">
