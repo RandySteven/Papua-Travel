@@ -23,6 +23,7 @@ class CreateAirplaneTransactionsTable extends Migration
             $table->string('schedule_time');
             $table->string('arival_time');
             $table->integer('total');
+            $table->string('invoice')->unique();
             $table->timestamps();
         });
     }

@@ -15,7 +15,7 @@ class CreateHotelTransactionDetailsTable extends Migration
     {
         Schema::create('hotel_transaction_details', function (Blueprint $table) {
             $table->foreignId('room_id')->constrained('rooms')->onDelete('cascade');
-            $table->foreignId('transaction_id')->constrained('hotel_transactions')->onDelete('cascade');
+            $table->foreignId('hotel_transaction_id')->constrained('hotel_transactions')->onDelete('cascade');
             $table->primary(['room_id', 'transaction_id']);
             $table->integer('nights');
             $table->date('from_date');

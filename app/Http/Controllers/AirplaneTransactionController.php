@@ -8,12 +8,23 @@ use Illuminate\Http\Request;
 
 class AirplaneTransactionController extends Controller
 {
+    public static function randchar($length){
+        $chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $clen = strlen($chars) - 1;
+        $id = '';
+        for($i = 0 ; $i < $clen ; $i++){
+            $id .= $chars[mt_rand(0, $clen)];
+        }
+        return $id;
+    }
+
     public function store(Request $request){
         $bookings = Booking::where('user_id', auth()->user()->id);
         $bookingUsers = $bookings->get();
         $attr = $request->all();
         $attr['airplane_id'] = $request->get('airplane_id');
         $attr['total'] = 1200000;
+        $attr['invoice'] = strtoupper('AT'.random_int(0,9).random_int(0,9).random_int(0,9).date("Ymd").$this->randchar(5).'XX');
         $transaction = auth()->user()->airplane_transactions()->create($attr);
         foreach($bookingUsers as $booking){
             $transaction->airplane_transaction_details()->create([

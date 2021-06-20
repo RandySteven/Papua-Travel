@@ -144,9 +144,6 @@ Route::middleware('auth')->group(function(){
     Route::post('store-airplane-transaction', [AirplaneTransactionController::class, 'store'])->name('airplane.transaction.store');
     Route::delete('booking/{booking:seat_id}', [BookingController::class, 'delete'])->name('booking.delete');
 
-    //Airplane Transaction
-    Route::get('airplane-transaction', [AirplaneTransactionController::class, 'index'])->name('airplane.transaction.index');
-    Route::get('airpalane-transaction/{airplane_transaction:id}', [AirplaneTransactionController::class, 'show'])->name('airplane.transaction.show');
 });
 
 
@@ -166,7 +163,13 @@ Route::prefix('airplane')->group(function(){
 });
 
 Route::middleware('auth')->group(function(){
+    //Hotel Transaction
     Route::get('/hotel-transaction', [HotelTransactionController::class, 'index'])->name('hotel.transaction.index');
     Route::get('/hotel-transaction/{hotel_transaction:id}', [HotelTransactionController::class, 'show'])->name('hotel.transaction.show');
+
+    //Airplane Transaction
+    Route::get('airplane-transaction', [AirplaneTransactionController::class, 'index'])->name('airplane.transaction.index');
+    Route::get('airpalane-transaction/{airplane_transaction:id}', [AirplaneTransactionController::class, 'show'])->name('airplane.transaction.show');
+
 });
 require __DIR__.'/auth.php';

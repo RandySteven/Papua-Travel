@@ -9,11 +9,23 @@ use Illuminate\Http\Request;
 
 class HotelTransactionController extends Controller
 {
+
+    public static function randchar($length){
+        $chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $clen = strlen($chars) - 1;
+        $id = '';
+        for($i = 0 ; $i < $length ; $i++){
+            $id .= $chars[mt_rand(0, $clen)];
+        }
+        return $id;
+    }
+
     public function store(Request $request){
         $carts = Cart::where('user_id', auth()->user()->id);
         $cartUsers = $carts->get();
         $attr = $request->all();
         $attr['hotel_id'] = $request->get('hotel_id');
+        $attr['invoice'] = strtoupper('HT'.random_int(0,9).random_int(0,9).random_int(0,9).date("Ymd").$this->randchar(5).'XX');
         $transaction = auth()->user()->hotel_transactions()->create($attr);
 
         foreach($cartUsers as $cart){

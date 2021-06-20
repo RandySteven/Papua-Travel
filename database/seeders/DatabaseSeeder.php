@@ -19,9 +19,9 @@ class DatabaseSeeder extends Seeder
         $this->call(TagSeeder::class);
         $this->call(RoleSeeder::class);
         $this->call(UserSeeder::class);
-        \App\Models\Restaurant::factory(10)->create();
-        \App\Models\Hotel::factory(10)->create();
-        \App\Models\Airplane::factory(10)->create();
+        \App\Models\Restaurant::factory(5)->create();
+        \App\Models\Hotel::factory(5)->create();
+        \App\Models\Airplane::factory(5)->create();
         $this->call(SeatSeeder::class);
     }
 }
