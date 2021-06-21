@@ -158,6 +158,7 @@ Route::prefix('airplane')->group(function(){
         Route::delete('/delete/{airplane:slug}', [AirplaneController::class, 'delete'])->name('airplane.delete');
         Route::post('/add-seat', [SeatController::class, 'store'])->name('seat.store');
         Route::post('/add-schedule', [ScheduleController::class, 'store'])->name('schedule.controller');
+        Route::post('/generate-seat', [SeatController::class, 'generateSeat'])->name('generate.seat');
     });
     Route::get('/{airplane:slug}', [AirplaneController::class, 'show'])->name('airplane.show');
 });

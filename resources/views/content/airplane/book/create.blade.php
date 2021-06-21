@@ -61,7 +61,7 @@
                         <div class="form-group my-2">
                             <select name="to" id="to" class="w-full">
                                 @foreach ($provinces as $province)
-                                    <option value="{{ $province }}" {{ $province == 'Papua' ? 'selected' : '' }}>{{ $province }}</option>
+                                    <option value="{{ $province }}" {{ $province == $schedule->arival_location ? 'selected' : '' }}>{{ $province }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -77,7 +77,7 @@
                             <label for="seats[]">Seats</label>
                             <select name="seats[]" multiple id="seats[]" class="w-full">
                                 <div class="grid grid-cols-6 mx-4">
-                                @foreach ($schedule->airplane->seats as $seat)
+                                @foreach ($schedule->seats as $seat)
                                     <option class="px-1 py-3 mx-2 my-2
                                        {{ $seat->status == 'Aviable' ? 'bg-green-500' : 'bg-red-500' }}
                                     text-center" value="{{ $seat->id }}" {{ $seat->status == 'Booked' ? 'disabled' : '' }}>{{ $seat->seat }}</option>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AirplaneTransaction;
 use App\Models\AirplaneTransactionDetail;
+use App\Models\Schedule;
 use App\Models\Seat;
 use Illuminate\Http\Request;
 
@@ -14,10 +15,43 @@ class SeatController extends Controller
             'seat' => 'required'
         ]);
         $attr = $request->all();
-        $attr['airplane_id'] = $request->get('airplane_id');
+        $attr['schedule_id'] = $request->get('schedule_id');
         $attr['status'] = 'Aviable';
         Seat::create($attr);
         return redirect('airplane');
+    }
+
+    public function generateSeat(Request $request){
+        $row = $request->row;
+        for($i = 1 ; $i <= $row ; $i++){
+            for($j = 1 ; $j <= 6 ; $j++){
+                if($j == 1){
+                    $code = "A";
+                }
+                if($j == 2){
+                    $code = "B";
+                }
+                if($j == 3){
+                    $code = "C";
+                }
+                if($j == 4){
+                    $code = "E";
+                }
+                if($j == 5){
+                    $code = "F";
+                }
+                if($j == 6){
+                    $code = "G";
+                }
+                $seat = "$i$code";
+                Seat::create([
+                    'seat' => $seat,
+                    'status' => 'Aviable',
+                    'schedule_id' => $request->schedule_id
+                ]);
+            }
+        }
+        return back();
     }
 
     public static function autoupdate(Seat $seat){

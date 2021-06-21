@@ -7,8 +7,8 @@
             <span class="text-red-500">{{ $message }}</span>
         @enderror
     </div>
-    <input type="hidden" name="airplane_id" value="{{ $airplane_id }}">
+    <input type="hidden" name="schedule_id" value="{{ $schedule_id }}">
     <div class="form-group my-2">
-        <button type="submit" class="w-full bg bg-red-500 text-white py-2">Create</button>
+        <button type="submit" class="w-full bg bg-red-600 hover:bg-red-500 text-white py-2">Create</button>
     </div>
 </form>

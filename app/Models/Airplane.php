@@ -17,10 +17,7 @@ class Airplane extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function seats(): HasMany
-    {
-        return $this->hasMany(Seat::class);
-    }
+
 
     /**
      * Get all of the airplane_transactions for the Airplane

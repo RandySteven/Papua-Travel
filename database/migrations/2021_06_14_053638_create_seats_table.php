@@ -17,7 +17,7 @@ class CreateSeatsTable extends Migration
             $table->id();
             $table->string('seat');
             $table->enum('status', ['Aviable', 'Booked']);
-            $table->foreignId('airplane_id')->constrained('airplanes')->onDelete('cascade');
+            $table->foreignId('schedule_id')->constrained('schedules')->onDelete('cascade');
             $table->timestamps();
         });
     }

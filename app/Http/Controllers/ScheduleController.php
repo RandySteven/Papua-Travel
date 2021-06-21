@@ -15,12 +15,14 @@ class ScheduleController extends Controller
     public function store(Request $request){
         $request->validate([
             'departure_location' => 'required',
+            'arival_location' => 'required',
             'schedule_date' => 'required|date',
             'schedule_time' => 'required',
             'arival_time' => 'required'
         ]);
         Schedule::create([
             'departure_location' => $request->departure_location,
+            'arival_location' => $request->arival_location,
             'schedule_date' => $request->schedule_date,
             'schedule_time' => $request->schedule_time,
             'arival_time' => $request->arival_time,

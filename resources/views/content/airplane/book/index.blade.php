@@ -21,7 +21,7 @@
                             <tbody class="border-2 border-black text-center">
                                 @foreach ($bookings as $booking)
                                 <tr class="border-2 border-black">
-                                    <td class="border-2 border-black">{{ $booking->seat->airplane->airplane_name }}</td>
+                                    <td class="border-2 border-black">{{ $booking->seat->schedule->airplane->airplane_name }}</td>
                                     <td class="border-2 border-black">{{ $booking->seat->seat }}</td>
                                     <td class="border-2 border-black">{{ $booking->departure_date }}</td>
                                     <td class="border-2 border-black">{{ $booking->from }}</td>
@@ -43,7 +43,7 @@
                     <div>
                         <form action="{{ route('airplane.transaction.store') }}" method="post">
                             @csrf
-                            <input type="hidden" name="airplane_id" value="{{ $booking->seat->airplane->id }}">
+                            <input type="hidden" name="airplane_id" value="{{ $booking->seat->schedule->airplane->id }}">
                             <input type="hidden" name="schedule_time" value="{{ $booking->schedule_time }}">
                             <input type="hidden" name="arival_time" value="{{ $booking->arival_time }}">
                             <input type="hidden" name="to" value="{{ $booking->to }}">

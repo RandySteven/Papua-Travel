@@ -17,8 +17,18 @@ class Seat extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function airplane(): BelongsTo
+    // public function airplane(): BelongsTo
+    // {
+    //     return $this->belongsTo(Airplane::class, 'airplane_id');
+    // }
+
+    /**
+     * Get the schedule that owns the Seat
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function schedule(): BelongsTo
     {
-        return $this->belongsTo(Airplane::class, 'airplane_id');
+        return $this->belongsTo(Schedule::class, 'schedule_id');
     }
 }

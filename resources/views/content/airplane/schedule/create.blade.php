@@ -46,6 +46,16 @@ $provinces = array(
             @endforeach
         </select>
     </div>
+
+    <div class="form-group my-2">
+        <label for="arival_location" class="w-full">Departure Location</label>
+        <select name="arival_location" class="w-full">
+            @foreach ($provinces as $province)
+                <option value="{{ $province }}">{{ $province }}</option>
+            @endforeach
+        </select>
+    </div>
+
     <div class="form-group my-2">
         <label for="schedule_date">Schedule Date</label>
         <input type="date" name="schedule_date" id="schedule_date" class="w-full @error('schedule_date') border-red-500 @enderror">

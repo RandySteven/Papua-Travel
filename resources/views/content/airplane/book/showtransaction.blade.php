@@ -23,7 +23,7 @@
                         <tbody class="border-2 border-black text-center">
                             @foreach ($airplaneTransaction->airplane_transaction_details as $detail)
                             <tr class="border-2 border-black">
-                                <td class="border-2 border-black">{{ $detail->seat->airplane->airplane_name }}</td>
+                                <td class="border-2 border-black">{{ $detail->seat->schedule->airplane->airplane_name }}</td>
                                 <td class="border-2 border-black">{{ $detail->seat->seat }}</td>
                                 <td class="border-2 border-black">{{ $airplaneTransaction->departure_date }}</td>
                                 <td class="border-2 border-black">{{ $airplaneTransaction->from }}</td>

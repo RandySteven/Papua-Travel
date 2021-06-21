@@ -40,7 +40,7 @@ class SeatSeeder extends Seeder
                 Seat::create([
                     'seat' => $seat,
                     'status' => 'Aviable',
-                    'airplane_id' => 1
+                    'schedule_id' => 1
                 ]);
             }
         }
