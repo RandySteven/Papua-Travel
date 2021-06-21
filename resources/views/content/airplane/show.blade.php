@@ -38,8 +38,8 @@
 
                                 <div class="w-full border-2 border-black py-2 text-center">
                                     <div class="form-group my-4">
-                                        from : {{ $schedule->departure_location }}
-                                        <br>
+                                        from : {{ $schedule->departure_location }}<br>
+                                        to : {{ $schedule->arival_location }} <br>
                                         Schedule time : {{ $schedule->schedule_time }} <br>
                                         Arival time : {{ $schedule->arival_time }} <br>
                                         Date : {{ $schedule->schedule_date }}

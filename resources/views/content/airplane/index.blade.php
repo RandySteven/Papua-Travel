@@ -31,6 +31,20 @@
                                 <img class="w-16 h-16 object-cover" src="{{ asset('storage/'.$airplane->airplane_image) }}" alt="" />
                                 <div class="flex flex-col justify-center">
                                   <p class="text-gray-900 dark:text-gray-300 font-semibold">{{ $airplane->airplane_name }}</p>
+                                  @auth
+                                      @if (Auth::user()->hasRole('admin'))
+                                      <div class="bg-green-500 my-2 text-center hover:bg-green-400 text-white px-2 py-1">
+                                          <a href="{{ route('airplane.edit', $airplane) }}">Edit Airplane</a>
+                                      </div>
+                                      <div class="bg-red-500 text-center hover:bg-red-400 text-white px-2 py-1">
+                                            <form action="{{ route('airplane.delete', $airplane) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit">DELETE</button>
+                                            </form>
+                                      </div>
+                                      @endif
+                                  @endauth
                                 </div>
                             </div>
                         </a>

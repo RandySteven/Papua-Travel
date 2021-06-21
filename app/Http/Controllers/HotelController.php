@@ -55,7 +55,7 @@ class HotelController extends Controller
             $attr['hotel_image'] = $hotel->hotel_image;
         }
         $hotel->update($attr);
-        return redirect('hotel');
+        return view('content.hotel.show', compact('hotel'));
     }
 
     public function delete(Hotel $hotel){

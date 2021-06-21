@@ -62,6 +62,7 @@
                                     @endif
                                 @endauth
                             </div>
+
                             <button class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
                                 <div>{{ Auth::user()->name }}</div>
 
@@ -83,6 +84,8 @@
                                 <x-dropdown-link :href="route('place.create')">Add Travel Place</x-dropdown-link>
                                 <x-dropdown-link :href="route('category.index')">Category</x-dropdown-link>
                             @endif
+                            <x-dropdown-link :href="route('airplane.transaction.index')">Airplane Transaction History</x-dropdown-link>
+                            <x-dropdown-link :href="route('hotel.transaction.index')">Hotel Transaction History</x-dropdown-link>
                         @endauth
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
