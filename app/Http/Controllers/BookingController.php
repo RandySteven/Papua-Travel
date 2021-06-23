@@ -25,7 +25,6 @@ class BookingController extends Controller
                 'schedule_time' => $request->schedule_time,
                 'arival_time' => $request->arival_time
             ]);
-            Seat::where('id', $seat)->update(['status' => 'Booked']);
         }
         return redirect('booking');
     }

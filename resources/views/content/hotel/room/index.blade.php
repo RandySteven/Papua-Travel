@@ -10,7 +10,7 @@
             <div class="flex-auto ml-3 justify-evenly py-2">
                 <div class="flex flex-wrap ">
                     <div class="w-full flex-none text-xs text-blue-700 font-medium ">
-                        Hotel
+                        Room
                     </div>
                         <h2 class="flex-auto text-lg font-medium">{{ $room->room_number }} - {{ $room->floor }}</h2>
                 </div>

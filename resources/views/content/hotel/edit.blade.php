@@ -48,7 +48,7 @@
                             </select>
                         </div>
                         <div class="form-group my-2">
-                            <button type="submit" class="bg-red-500 hover:bg-red-600 w-full text-white text-center py-3">Create</button>
+                            <button type="submit" class="bg-red-500 hover:bg-red-600 w-full text-white text-center py-3">Update</button>
                         </div>
                     </form>
                 </div>

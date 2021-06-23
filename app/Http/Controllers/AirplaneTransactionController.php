@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AirplaneTransaction;
 use App\Models\Booking;
+use App\Models\Seat;
 use Illuminate\Http\Request;
 
 class AirplaneTransactionController extends Controller
@@ -30,6 +31,8 @@ class AirplaneTransactionController extends Controller
             $transaction->airplane_transaction_details()->create([
                 'seat_id' => $booking->seat->id,
             ]);
+            $seat = Seat::where('id', $booking->seat->id);
+            $seat->update(['status' => 'Booked']);
         }
         $bookings->delete();
         return redirect('airplane');
@@ -40,7 +43,7 @@ class AirplaneTransactionController extends Controller
     }
 
     public function index(){
-        $transactions = AirplaneTransaction::where('user_id', auth()->user()->id)->get();
+        $transactions = AirplaneTransaction::where('user_id', auth()->user()->id)->latest()->get();
         return view('content.airplane.book.transaction', compact('transactions'));
     }
 }

@@ -2,7 +2,7 @@
     <x-slot name="style">
         <style>
             body{
-                background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5));
+                background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("/images/FalseGloriousJohndory-max-1mb.gif");
                 background-size: cover;
                 background-repeat: no-repeat;
             }
@@ -53,6 +53,12 @@
                 <x-input id="password_confirmation" class="block mt-1 w-full"
                                 type="password"
                                 name="password_confirmation" required />
+            </div>
+
+            <div class="mt-4">
+                <x-label for="dob" :value="__('Date of Birth')" />
+
+                <x-input id="dob" class="block mt-1 w-full" type="date" name="dob" required />
             </div>
 
             <div class="flex items-center justify-end mt-4">

@@ -49,12 +49,12 @@
                                     </div>
                                 </div>
 
-                                <div class="grid grid-cols-6 mx-4 my-8">
-                                    @foreach ($schedule->seats as $seat)
-                                        <a href="" class="px-1 py-3 mx-2 my-2
-                                           {{ $seat->status == 'Aviable' ? 'bg-green-500 hover:bg-green-600' : 'bg-red-500' }}
-                                        text-center">{{ $seat->seat }}</a>
-                                    @endforeach
+                                <div class="grid grid-cols-6 my-8">
+                                    @for ($i = 0 ; $i < $schedule->seats->count() ; $i++)
+                                        <a href="" class="py-3 {{ $i % 2 == 0 ? 'mr-4' : 'mr-1' }} my-2
+                                        {{ $schedule->seats[$i]->status == 'Aviable' ? 'bg-green-500 hover:bg-green-600' : 'bg-red-500' }}
+                                        text-center">{{ $schedule->seats[$i]->seat }}</a>
+                                    @endfor
                                 </div>
 
                                 @auth
