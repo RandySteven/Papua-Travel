@@ -1,4 +1,12 @@
 <x-app-layout>
+    <x-slot name="style">
+        <style>
+            body{
+                background-color: maroon;
+            }
+        </style>
+    </x-slot>
+
     <x-slot name="title">
         Airplane Transaction
     </x-slot>
@@ -21,6 +29,7 @@
                             <th class="border-2 border-black">Arival Time</th>
                             <th class="border-2 border-black">Passenger Name</th>
                             <th class="border-2 border-black">Passenger Age</th>
+                            <th class="border-2 border-black">Category</th>
                         </thead>
                         <tbody class="border-2 border-black text-center">
                             @foreach ($airplaneTransaction->airplane_transaction_details as $detail)
@@ -34,6 +43,21 @@
                                 <td class="border-2 border-black">{{ $airplaneTransaction->arival_time }}</td>
                                 <td class="border-2 border-black">{{ $detail->passenger_name }}</td>
                                 <td class="border-2 border-black">{{ $detail->passenger_age }}</td>
+                                <td class="border-2 border-black">
+                                    <?php
+                                        if($detail->passenger_age < 5){
+                                            echo 'Baby';
+                                        }else if($detail->passenger_age >= 5 && $detail->passenger_age < 13){
+                                            echo 'Kid';
+                                        }else if($detail->passenger_age >= 13 && $detail->passenger_age < 18){
+                                            echo 'Teen';
+                                        }else if($detail->passenger_age >= 18 && $detail->passenger_age < 60){
+                                            echo 'Adult';
+                                        }else{
+                                            echo 'Old';
+                                        }
+                                    ?>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>

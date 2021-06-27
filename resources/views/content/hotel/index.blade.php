@@ -59,11 +59,11 @@
                                 <div class="flex p-4 pb-2 border-t border-gray-200 "></div>
                                 <div class="flex space-x-3 text-sm font-medium">
                                     <div class="flex-auto flex space-x-3">
-                                        <button
+                                        <a href="{{ route('rating.show', $hotel->rating) }}"
                                             class="mb-2 md:mb-0 bg-white px-5 py-2 shadow-sm tracking-wider border text-gray-600 rounded-full hover:bg-gray-100 inline-flex items-center space-x-2 ">
                                             <img src="{{ asset('/images/star.png') }}" width="10" alt="">
                                             <span>{{ $hotel->rating->rating_score }}</span>
-                                        </button>
+                                        </a>
                                     </div>
                                     <a
                                         class="mb-2 md:mb-0 bg-gray-900 px-5 py-2 shadow-sm tracking-wider text-white rounded-full hover:bg-gray-800"
