@@ -6,6 +6,7 @@ use App\Models\AirplaneTransaction;
 use App\Models\Booking;
 use App\Models\Seat;
 use Illuminate\Http\Request;
+use Ramsey\Uuid\Type\Integer;
 
 class AirplaneTransactionController extends Controller
 {
@@ -22,14 +23,27 @@ class AirplaneTransactionController extends Controller
     public function store(Request $request){
         $bookings = Booking::where('user_id', auth()->user()->id);
         $bookingUsers = $bookings->get();
-        $attr = $request->all();
-        $attr['airplane_id'] = $request->get('airplane_id');
-        $attr['total'] = 1200000;
-        $attr['invoice'] = strtoupper('AT'.random_int(0,9).random_int(0,9).random_int(0,9).date("Ymd").$this->randchar(5).'XX');
-        $transaction = auth()->user()->airplane_transactions()->create($attr);
-        foreach($bookingUsers as $booking){
+        // $attr = $request->all();
+        // // dd($attr);
+
+        // $attr['airplane_id'] = $request->get('airplane_id');
+        // $attr['total'] = 1200000;
+        $invoice = strtoupper('AT'.random_int(0,9).random_int(0,9).random_int(0,9).date("Ymd").$this->randchar(5).'XX');
+        $transaction = auth()->user()->airplane_transactions()->create([
+            'airplane_id' => $request->get('airplane_id'),
+            'total' => 120000,
+            'invoice' => $invoice,
+            'departure_date' => $request->departure_date,
+            'to' => $request->to,
+            'from' => $request->from,
+            'schedule_time' => $request->schedule_time,
+            'arival_time' => $request->arival_time,
+        ]);
+        foreach($bookingUsers as $key => $booking){
             $transaction->airplane_transaction_details()->create([
                 'seat_id' => $booking->seat->id,
+                'passenger_name' => $request->input('passenger_name')[$key],
+                'passenger_age' => $request->input('passenger_age')[$key]
             ]);
             $seat = Seat::where('id', $booking->seat->id);
             $seat->update(['status' => 'Booked']);

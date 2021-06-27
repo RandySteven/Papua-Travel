@@ -1,4 +1,11 @@
 <x-app-layout>
+    <x-slot name="style">
+        <style>
+            body{
+                background-color: maroon;
+            }
+        </style>
+    </x-slot>
     <x-slot name="title">
         Airplane Transaction
     </x-slot>

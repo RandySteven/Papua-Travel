@@ -51,9 +51,12 @@
 
                                 <div class="grid grid-cols-6 my-8">
                                     @for ($i = 0 ; $i < $schedule->seats->count() ; $i++)
-                                        <a href="" class="py-3 {{ $i % 2 == 0 ? 'mr-4' : 'mr-1' }} my-2
+                                        <a href="" class="py-3 {{ $i % 3 == 0 ? 'mr-4' : 'mr-4' }} my-2
                                         {{ $schedule->seats[$i]->status == 'Aviable' ? 'bg-green-500 hover:bg-green-600' : 'bg-red-500' }}
                                         text-center">{{ $schedule->seats[$i]->seat }}</a>
+                                        {{-- @if ($i % 1 == 0)
+                                            <div class="mx-4 my-8 bg-yellow-500"></div>
+                                        @endif --}}
                                     @endfor
                                 </div>
 
