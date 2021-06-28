@@ -119,15 +119,15 @@ Route::prefix('tradition')->group(function(){
     Route::get('/{tradition:slug}', [TraditionController::class, 'show'])->name('tradition.show');
 });
 
-//Diary
-Route::prefix('diary')->group(function(){
+//Post
+Route::prefix('holiday-package')->group(function(){
     Route::middleware('auth')->group(function(){
-        Route::get('/create', [PostController::class, 'create'])->name('diary.create');
-        Route::post('/create', [PostController::class, 'store'])->name('diary.store');
-        Route::delete('delete/{post:slug}', [PostController::class, 'delete'])->name('post.delete');
+        Route::get('/create', [PostController::class, 'create'])->name('package.create');
+        Route::post('/create', [PostController::class, 'store'])->name('package.store');
+        Route::delete('delete/{post:slug}', [PostController::class, 'delete'])->name('package.delete');
     });
-    Route::get('', [PostController::class, 'index'])->name('post.index');
-    Route::get('{post:slug}', [PostController::class, 'show'])->name('post.show');
+    Route::get('', [PostController::class, 'index'])->name('package.index');
+    Route::get('{post:slug}', [PostController::class, 'show'])->name('package.show');
 });
 
 Route::middleware('auth')->group(function(){

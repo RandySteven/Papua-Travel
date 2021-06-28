@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Place;
 use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Http\Request;
@@ -15,8 +16,8 @@ class PostController extends Controller
     }
 
     public function create(){
-        $tags = Tag::get();
-        return view('content.post.create', compact('tags'));
+        $places = Place::all();
+        return view('content.post.create', compact('places'));
     }
 
     public function store(Request $request){
@@ -24,8 +25,8 @@ class PostController extends Controller
         $attr['slug'] = \Str::slug($request->title);
         $attr['image'] = $request->file('image')->store("images/diay");
         $post = Post::create($attr);
-        $post->tags()->attach($request->get('tags'));
-        return redirect('diary/');
+        $post->tags()->attach($request->get('places[]'));
+        return redirect('holiday-package');
     }
 
     public function show(Post $post){
@@ -36,6 +37,6 @@ class PostController extends Controller
         if($post->delete()){
             Storage::delete($post->image);
         }
-        return redirect('diary');
+        return redirect('holiday-package');
     }
 }
