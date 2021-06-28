@@ -18,7 +18,8 @@ class ScheduleController extends Controller
             'arival_location' => 'required',
             'schedule_date' => 'required|date',
             'schedule_time' => 'required',
-            'arival_time' => 'required'
+            'arival_time' => 'required',
+            'price' => 'required'
         ]);
         Schedule::create([
             'departure_location' => $request->departure_location,
@@ -26,6 +27,7 @@ class ScheduleController extends Controller
             'schedule_date' => $request->schedule_date,
             'schedule_time' => $request->schedule_time,
             'arival_time' => $request->arival_time,
+            'price' => $request->price,
             'airplane_id' => $request->get('airplane_id')
         ]);
         return back();

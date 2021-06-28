@@ -1,10 +1,13 @@
 <x-app-layout>
+@php
+    $total = 0;
+@endphp
     <x-slot name="title">
         Bookings
     </x-slot>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg border-2 border-black">
                 <form action="{{ route('airplane.transaction.store') }}" method="post">
                 <div class="p-6 bg-white border-b border-gray-200">
                         @csrf
@@ -32,7 +35,7 @@
                                     <td class="border-2 border-black">{{ $booking->schedule_time }}</td>
                                     <td class="border-2 border-black">{{ $booking->arival_time }}</td>
                                         <td class="border-2 border-black">
-                                            <input type="text" name="passenger_name[]" id="" placeholder="Passenger Name">
+                                            <input type="text" class="border-blue-500" name="passenger_name[]" id="" placeholder="Passenger Name">
                                         </td>
                                         <td class="border-2 border-black">
                                             <input type="number" name="passenger_age[]" id="" placeholder="Passenger Age">
@@ -41,7 +44,9 @@
                                         <button class="modal-open bg-transparent border border-gray-500 hover:border-red-500 text-gray-500 hover:text-red-500 font-bold py-2 px-4 rounded-full">Delete</button>
                                     </td>
                                 </tr>
-
+                                @php
+                                    $total += ($booking->seat->schedule->price)
+                                @endphp
                                 @empty
                                     <x-session></x-session>
                                 @endforelse
@@ -61,7 +66,8 @@
                         <input type="hidden" name="to" value="{{ $booking->to }}">
                         <input type="hidden" name="from" value="{{ $booking->from }}">
                         <input type="hidden" name="departure_date" value="{{ $booking->departure_date }}">
-                        <button type="submit" class="bg-red-500 hover:bg-red-600 text-white rounded px-2 py-2">Submit</button>
+                        <p> <b> Rp. {{ number_format($total, 2) }} </b> </p>
+                        <button type="submit" class="bg-red-500 hover:bg-red-600 text-white rounded px-2 py-2">Check Out</button>
                         @endempty
 
                     </div>

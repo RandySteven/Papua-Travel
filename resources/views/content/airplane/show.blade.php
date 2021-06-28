@@ -38,11 +38,12 @@
 
                                 <div class="w-full border-2 border-black py-2 text-center">
                                     <div class="form-group my-4">
-                                        from : {{ $schedule->departure_location }}<br>
-                                        to : {{ $schedule->arival_location }} <br>
+                                        From : {{ $schedule->departure_location }}<br>
+                                        To : {{ $schedule->arival_location }} <br>
                                         Schedule time : {{ $schedule->schedule_time }} <br>
                                         Arival time : {{ $schedule->arival_time }} <br>
-                                        Date : {{ $schedule->schedule_date }}
+                                        Date : {{ $schedule->schedule_date }} <br>
+                                        Price : Rp {{ number_format($schedule->price, 2) }}
                                     </div>
                                     <div class="form-group my-2">
                                         <a href="{{ route('booking.create', $schedule) }}" class="w-full px-5 rounded py-3 bg-red-600 hover:bg-red-500 text-white">Book Now</a>

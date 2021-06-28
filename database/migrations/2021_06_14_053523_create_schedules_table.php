@@ -20,6 +20,7 @@ class CreateSchedulesTable extends Migration
             $table->date('schedule_date');
             $table->string('schedule_time');
             $table->string('arival_time');
+            $table->integer('price');
             $table->foreignId('airplane_id')->constrained('airplanes')->onDelete('cascade');
             $table->timestamps();
         });

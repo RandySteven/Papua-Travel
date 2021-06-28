@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTagsTable extends Migration
+class CreatePostTransactionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateTagsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tags', function (Blueprint $table) {
+        Schema::create('post_transactions', function (Blueprint $table) {
             $table->id();
-            $table->string('tag');
-            $table->string('tag_description');
-            $table->string('slug');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->string('invoice');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateTagsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tags');
+        Schema::dropIfExists('post_transactions');
     }
 }

@@ -31,7 +31,6 @@ class AirplaneTransactionController extends Controller
         $invoice = strtoupper('AT'.random_int(0,9).random_int(0,9).random_int(0,9).date("Ymd").$this->randchar(5).'XX');
         $transaction = auth()->user()->airplane_transactions()->create([
             'airplane_id' => $request->get('airplane_id'),
-            'total' => 120000,
             'invoice' => $invoice,
             'departure_date' => $request->departure_date,
             'to' => $request->to,
@@ -48,6 +47,7 @@ class AirplaneTransactionController extends Controller
             $seat = Seat::where('id', $booking->seat->id);
             $seat->update(['status' => 'Booked']);
         }
+
         $bookings->delete();
         return redirect('airplane');
     }
@@ -59,5 +59,10 @@ class AirplaneTransactionController extends Controller
     public function index(){
         $transactions = AirplaneTransaction::where('user_id', auth()->user()->id)->latest()->get();
         return view('content.airplane.book.transaction', compact('transactions'));
+    }
+
+    public function delete(AirplaneTransaction $airplaneTransaction){
+        $airplaneTransaction->delete();
+        return redirect('airplane-transaction');
     }
 }

@@ -57,6 +57,14 @@ $provinces = array(
     </div>
 
     <div class="form-group my-2">
+        <label for="price">Schedule Price</label>
+        <input type="number" name="price" id="price" class="w-full @error('price') border-red-500 @enderror">
+        @error('price')
+            <span class="text-red-500">{{ $message }}</span>
+        @enderror
+    </div>
+
+    <div class="form-group my-2">
         <label for="schedule_date">Schedule Date</label>
         <input type="date" name="schedule_date" id="schedule_date" class="w-full @error('schedule_date') border-red-500 @enderror">
         @error('schedule_date')

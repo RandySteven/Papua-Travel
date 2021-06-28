@@ -18,8 +18,10 @@ class CreatePostsTable extends Migration
             $table->string('title');
             $table->string('slug');
             $table->string('image');
+            $table->integer('price');
+            $table->date('activity_start');
+            $table->date('activity_end');
             $table->text('description');
-            $table->foreignId('userId')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

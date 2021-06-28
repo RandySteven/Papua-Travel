@@ -18,7 +18,28 @@
                         @foreach ($transactions as $transaction)
                             <div class="border-2 border-black my-2 px-2">
                                 <h1 class="text-2xl">{{ $transaction->invoice }}</h1>
-                                <p>Purchase Date {{ $transaction->created_at }}</p>
+                                <div class="grid grid-cols-2">
+                                    <div>
+                                        <p>Purchase Date {{ $transaction->created_at }}</p>
+                                    </div>
+                                    <div>
+                                        <form action="{{ route('airplane.transaction.delete', $transaction) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="hover:bg-red-500 py-1 rounded hover:text-white px-2">
+                                            <div class="grid grid-cols-2">
+                                                <div>
+                                                    <img src="/images/delete.png" width="20" alt="">
+                                                </div>
+                                                <div>
+                                                    DELETE
+                                                </div>
+                                            </div>
+                                        </button>
+                                        </form>
+                                    </div>
+                                </div>
+
                                 <table class="border-2 border-black my-2 w-full">
                                     <tbody class="border-2 border-black my-2">
                                         <tr class="border-2 border-black my-2">

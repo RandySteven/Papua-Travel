@@ -170,7 +170,7 @@ Route::middleware('auth')->group(function(){
 
     //Airplane Transaction
     Route::get('airplane-transaction', [AirplaneTransactionController::class, 'index'])->name('airplane.transaction.index');
-    Route::get('airpalane-transaction/{airplane_transaction:id}', [AirplaneTransactionController::class, 'show'])->name('airplane.transaction.show');
-
+    Route::get('airpalane-transaction/{airplane_transaction:invoice}', [AirplaneTransactionController::class, 'show'])->name('airplane.transaction.show');
+    Route::delete('delete-airplane-transaction/{airplane_transaction:invoice}', [AirplaneTransactionController::class, 'delete'])->name('airplane.transaction.delete');
 });
 require __DIR__.'/auth.php';
