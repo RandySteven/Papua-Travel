@@ -17,8 +17,5 @@ class Place extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function posts(): BelongsToMany
-    {
-        return $this->belongsToMany(Post::class);
-    }
+
 }

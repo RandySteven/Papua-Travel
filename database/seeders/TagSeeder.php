@@ -15,13 +15,18 @@ class TagSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker::create();
-        for($i = 0 ; $i < 5 ; $i++){
+        $tags = collect([
+            'Papua',
+            'View',
+            'Nice View',
+            'Nature',
+            'PapuaTravel'
+        ]);
+        $tags->each(function($c){
             Tag::create([
-                'tag' => $faker->sentence(2),
-                'tag_description' => $faker->sentence(5),
-                'slug' => \Str::slug($faker->sentence(2))
+                'tag' => $c,
+                'slug' => \Str::slug($c)
             ]);
-        }
+        });
     }
 }

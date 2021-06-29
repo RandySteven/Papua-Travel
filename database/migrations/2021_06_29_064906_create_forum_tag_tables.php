@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePostPlaceTable extends Migration
+class CreateForumTagTables extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreatePostPlaceTable extends Migration
      */
     public function up()
     {
-        Schema::create('post_place', function (Blueprint $table) {
-            $table->foreignId('post_id')->constrained('posts')->onDelete('cascade');
-            $table->foreignId('place_id')->constrained('places')->onDelete('cascade');
-            $table->primary(['post_id', 'place_id']);
+        Schema::create('forum_tag_tables', function (Blueprint $table) {
+            $table->foreignId('forum_id')->constrained('forums')->onDelete('cascade');
+            $table->foreignId('tag_id')->constrained('tags')->onDelete('cascade');
+            $table->primary(['forum_id', 'tag_id']);
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreatePostPlaceTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('post_place');
+        Schema::dropIfExists('forum_tag_tables');
     }
 }

@@ -25,6 +25,9 @@
                             <tbody class="border-2 border-black text-center">
                                 @foreach ($carts as $cart)
                                 <tr class="border-2 border-black">
+                                    @php
+                                        $package = App\Models\Package::where('hotel_id', $cart->room->hotel->id)->first();
+                                    @endphp
                                     <td class="border-2 border-black">{{ $cart->room->hotel->hotel_name }}</td>
                                     <td class="border-2 border-black"><img src="{{ asset('storage/'.$cart->room->room_image) }}"
                                         width="250" height="250" alt=""></td>
@@ -43,7 +46,7 @@
                                     </td>
                                 </tr>
                                 @php
-                                    $total += ($cart->room->room_price_pernight * $cart->nights)
+                                    $total += ($cart->room->room_price_pernight * $cart->nights * $package->discount) / 100;
                                 @endphp
                                 @endforeach
                             </tbody>

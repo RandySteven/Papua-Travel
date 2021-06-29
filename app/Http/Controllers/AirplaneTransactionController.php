@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AirplaneTransaction;
 use App\Models\Booking;
+use App\Models\Package;
 use App\Models\Seat;
 use Illuminate\Http\Request;
 use Ramsey\Uuid\Type\Integer;
@@ -21,6 +22,7 @@ class AirplaneTransactionController extends Controller
     }
 
     public function store(Request $request){
+        $package = Package::get();
         $bookings = Booking::where('user_id', auth()->user()->id);
         $bookingUsers = $bookings->get();
         // $attr = $request->all();
@@ -48,7 +50,12 @@ class AirplaneTransactionController extends Controller
             $seat->update(['status' => 'Booked']);
         }
 
-        $bookings->delete();
+        // $bookings->delete();
+        // $package = new Package();
+        // if($package){
+        //     $hotel = $package->hotel()->first();
+        //     return view('content.hotel.show', ['package'=>$package, 'hotel'=>$hotel]);
+        // }
         return redirect('airplane');
     }
 

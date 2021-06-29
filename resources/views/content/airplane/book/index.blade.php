@@ -27,6 +27,9 @@
                             <tbody class="border-2 border-black text-center">
                                 @forelse ($bookings as $booking)
                                 <tr class="border-2 border-black">
+                                    @php
+                                        $package = App\Models\Package::where('schedule_id', $booking->seat->schedule->id)->first();
+                                    @endphp
                                     <td class="border-2 border-black">{{ $booking->seat->schedule->airplane->airplane_name }}</td>
                                     <td class="border-2 border-black">{{ $booking->seat->seat }}</td>
                                     <td class="border-2 border-black">{{ $booking->departure_date }}</td>
@@ -45,7 +48,7 @@
                                     </td>
                                 </tr>
                                 @php
-                                    $total += ($booking->seat->schedule->price)
+                                    $total += ($booking->seat->schedule->price * $package->discount) / 100
                                 @endphp
                                 @empty
                                     <x-session></x-session>

@@ -6,21 +6,19 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class Post extends Model
+class Tag extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'title', 'description', 'image', 'slug'
-    ];
+    protected $guarded = [];
 
     /**
-     * The tags that belong to the Post
+     * The users that belong to the Tag
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function places(): BelongsToMany
+    public function forums(): BelongsToMany
     {
-        return $this->belongsToMany(Place::class);
+        return $this->belongsToMany(Forum::class);
     }
 }

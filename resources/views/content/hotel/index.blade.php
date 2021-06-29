@@ -38,6 +38,16 @@
                                         Hotel
                                     </div>
                                     <h2 class="flex-auto text-lg font-medium">{{ $hotel->hotel_name }}</h2>
+                                    <div>
+                                        @php
+                                            $package = App\Models\Package::where('hotel_id', $hotel->id)->first();
+                                        @endphp
+                                        @if ($package)
+                                            <div class="bg-green-500">
+                                                Discount {{ $package->discount }} %
+                                            </div>
+                                        @endif
+                                    </div>
                                 </div>
                                 <p class="mt-3"></p>
                                 <div class="flex py-4  text-sm text-gray-600">

@@ -7,34 +7,29 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Schedule extends Model
+class Comment extends Model
 {
     use HasFactory;
 
     protected $guarded = [];
 
     /**
-     * Get the airplane that owns the Schedule
+     * Get the user that owns the Comment
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function airplane(): BelongsTo
+    public function user(): BelongsTo
     {
-        return $this->belongsTo(Airplane::class, 'airplane_id');
-    }
-
-    public function seats(): HasMany
-    {
-        return $this->hasMany(Seat::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     /**
-     * Get all of the packages for the Schedule
+     * Get all of the replies for the Comment
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function packages(): HasMany
+    public function replies(): HasMany
     {
-        return $this->hasMany(Package::class);
+        return $this->hasMany(Comment::class, 'parent_id');
     }
 }

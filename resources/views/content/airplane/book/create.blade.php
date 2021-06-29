@@ -73,18 +73,23 @@
                             <label for="arival_time">Arrival Time</label>
                             <input type="time" name="arival_time" id="arival_time" value="{{ $schedule->arival_time }}"  class="w-full">
                         </div>
-                        <div class="form-group my-2">
-                            <label for="seats[]">Seats</label>
-                            <select name="seats[]" multiple id="seats[]" class="w-full">
-                                <div class="grid grid-cols-6 mx-4">
-                                @foreach ($schedule->seats as $seat)
-                                    <option class="px-1 py-3 mx-2 my-2
-                                       {{ $seat->status == 'Aviable' ? 'bg-green-500' : 'bg-red-500' }}
-                                    text-center" value="{{ $seat->id }}" {{ $seat->status == 'Booked' ? 'disabled' : '' }}>{{ $seat->seat }}</option>
-                                @endforeach
-                                </div>
-                            </select>
-                        </div>
+                        @if (is_array($schedule->seats) || is_object($schedule->seats))
+                            <div class="form-group my-2">
+                                <label for="seats[]">Seats</label>
+                                <select name="seats[]" multiple id="seats[]" class="w-full">
+                                    <div class="grid grid-cols-6 mx-4">
+                                    @foreach ($schedule->seats as $seat)
+                                        <option class="px-1 py-3 mx-2 my-2
+                                        {{ $seat->status == 'Aviable' ? 'bg-green-500' : 'bg-red-500' }}
+                                        text-center" value="{{ $seat->id }}" {{ $seat->status == 'Booked' ? 'disabled' : '' }}>{{ $seat->seat }}</option>
+                                    @endforeach
+                                    </div>
+                                </select>
+                            </div>
+                        @endif
+                        @isset($package)
+                            <input type="hidden" name="schedule_price" value="{{ ($schedule->price * $package->discount)/100 }}">
+                        @endisset
                         <button type="submit" class="w-full py-2 bg-red-600 hover:bg-red-500 text-white">Book Now</button>
                     </form>
                 </div>

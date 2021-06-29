@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePostsTable extends Migration
+class CreatePackagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,14 @@ class CreatePostsTable extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('packages', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('slug');
-            $table->string('image');
-            $table->integer('price');
-            $table->date('activity_start');
-            $table->date('activity_end');
+            $table->foreignId('schedule_id')->constrained('schedules')->onDelete('cascade');
+            $table->foreignId('hotel_id')->constrained('hotels')->onDelete('cascade');
+            $table->integer('discount');
             $table->text('description');
+            $table->date('expired');
             $table->timestamps();
         });
     }
@@ -33,6 +32,6 @@ class CreatePostsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('packages');
     }
 }

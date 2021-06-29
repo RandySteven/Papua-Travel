@@ -5,9 +5,12 @@ use App\Http\Controllers\AirplaneTransactionController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FoodController;
+use App\Http\Controllers\ForumController;
 use App\Http\Controllers\HotelController;
 use App\Http\Controllers\HotelTransactionController;
+use App\Http\Controllers\PackageController;
 use App\Http\Controllers\PlaceController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RatingController;
@@ -17,6 +20,7 @@ use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\SeatController;
 use App\Http\Controllers\TraditionController;
 use App\Models\Category;
+use App\Models\Package;
 use App\Models\Restaurant;
 use Illuminate\Support\Facades\Route;
 
@@ -119,15 +123,18 @@ Route::prefix('tradition')->group(function(){
     Route::get('/{tradition:slug}', [TraditionController::class, 'show'])->name('tradition.show');
 });
 
-//Post
+//Holiday Package
 Route::prefix('holiday-package')->group(function(){
-    Route::middleware('auth')->group(function(){
-        Route::get('/create', [PostController::class, 'create'])->name('package.create');
-        Route::post('/create', [PostController::class, 'store'])->name('package.store');
-        Route::delete('delete/{post:slug}', [PostController::class, 'delete'])->name('package.delete');
+    Route::get('/', [PackageController::class, 'index'])->name('holiday.package.index');
+    Route::middleware(['auth', 'role:admin'])->group(function(){
+        Route::get('/create', [PackageController::class, 'create'])->name('holiday.package.create');
+        Route::post('/store', [PackageController::class, 'store'])->name('holiday.package.store');
     });
-    Route::get('', [PostController::class, 'index'])->name('package.index');
-    Route::get('{post:slug}', [PostController::class, 'show'])->name('package.show');
+    Route::get('/{package:title}', [PackageController::class, 'show'])->name('holiday.package.show');
+
+    Route::middleware('auth')->group(function(){
+        Route::get('/order/{package:title}', [PackageController::class, 'order'])->name('holiday.package.order');
+    });
 });
 
 Route::middleware('auth')->group(function(){
@@ -146,6 +153,23 @@ Route::middleware('auth')->group(function(){
 
 });
 
+//Forum
+Route::prefix('forums')->group(function(){
+    Route::get('/', [ForumController::class, 'index'])->name('forum.index');
+    Route::middleware('auth')->group(function(){
+        Route::get('/create', [ForumController::class, 'create'])->name('forum.create');
+        Route::post('/store', [ForumController::class, 'store'])->name('forum.store');
+        Route::get('/edit/{forum:slug}', [ForumController::class, 'edit'])->name('forum.edit');
+        Route::put('/update/{forum:slug}', [ForumController::class, 'update'])->name('forum.update');
+        Route::delete('/delete/{forum:slug}', [ForumController::class, 'delete'])->name('forum.delete');
+    });
+    Route::get('/{forum:slug}', [ForumController::class, 'show'])->name('forum.show');
+});
+
+Route::middleware('auth')->group(function(){
+    Route::post('comment', [CommentController::class, 'store'])->name('comment');
+    Route::post('reply', [CommentController::class, 'replies'])->name('reply');
+});
 
 //Airplane
 Route::prefix('airplane')->group(function(){
